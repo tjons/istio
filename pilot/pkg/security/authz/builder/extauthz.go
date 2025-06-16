@@ -275,8 +275,10 @@ func generateHTTPConfig(hostname, cluster string, status *envoytypev3.HttpStatus
 		Services: &extauthzhttp.ExtAuthz_HttpService{
 			HttpService: service,
 		},
-		FilterEnabledMetadata: generateFilterMatcher(wellknown.HTTPRoleBasedAccessControl),
-		WithRequestBody:       withBodyRequest(config.IncludeRequestBodyInCheck),
+		FilterEnabledMetadata:  generateFilterMatcher(wellknown.HTTPRoleBasedAccessControl),
+		WithRequestBody:        withBodyRequest(config.IncludeRequestBodyInCheck),
+		IncludePeerCertificate: true,
+		IncludeTlsSession:      true,
 	}
 	if allowedHeaders != nil {
 		http.AllowedHeaders = allowedHeaders
