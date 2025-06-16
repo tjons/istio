@@ -54,6 +54,8 @@ typedConfig:
       cluster: outbound|9000||my-custom-ext-authz.foo.svc.cluster.local
       timeout: 10s
       uri: http://my-custom-ext-authz.foo.svc.cluster.local
+  includePeerCertificate: true
+  includeTlsSession: true
   statusOnError:
     code: Forbidden
   transportApiVersion: V3
