@@ -14,5 +14,7 @@ typedConfig:
       authority: my-custom-ext-authz.foo.svc.cluster.local
       clusterName: outbound|9000||my-custom-ext-authz.foo.svc.cluster.local
     timeout: 0.002s
+  includePeerCertificate: true
+  includeTlsSession: true
   statPrefix: tcp.
   transportApiVersion: V3

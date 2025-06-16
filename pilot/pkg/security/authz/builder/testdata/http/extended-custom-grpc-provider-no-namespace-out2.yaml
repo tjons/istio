@@ -16,4 +16,6 @@ typedConfig:
     timeout: 600s
   statusOnError:
     code: Forbidden
+  includePeerCertificate: true
+  includeTlsSession: true
   transportApiVersion: V3
