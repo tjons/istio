@@ -305,16 +305,20 @@ func generateGRPCConfig(
 		Services: &extauthzhttp.ExtAuthz_GrpcService{
 			GrpcService: grpc,
 		},
-		FilterEnabledMetadata: generateFilterMatcher(wellknown.HTTPRoleBasedAccessControl),
-		TransportApiVersion:   core.ApiVersion_V3,
-		WithRequestBody:       withBodyRequest(config.IncludeRequestBodyInCheck),
+		FilterEnabledMetadata:  generateFilterMatcher(wellknown.HTTPRoleBasedAccessControl),
+		TransportApiVersion:    core.ApiVersion_V3,
+		WithRequestBody:        withBodyRequest(config.IncludeRequestBodyInCheck),
+		IncludeTlsSession:      true,
+		IncludePeerCertificate: true,
 	}
 	tcp := &extauthztcp.ExtAuthz{
-		StatPrefix:            "tcp.",
-		FailureModeAllow:      config.FailOpen,
-		TransportApiVersion:   core.ApiVersion_V3,
-		GrpcService:           grpc,
-		FilterEnabledMetadata: generateFilterMatcher(wellknown.RoleBasedAccessControl),
+		StatPrefix:             "tcp.",
+		FailureModeAllow:       config.FailOpen,
+		TransportApiVersion:    core.ApiVersion_V3,
+		GrpcService:            grpc,
+		FilterEnabledMetadata:  generateFilterMatcher(wellknown.RoleBasedAccessControl),
+		IncludeTlsSession:      true,
+		IncludePeerCertificate: true,
 	}
 	return &builtExtAuthz{http: http, tcp: tcp}
 }
